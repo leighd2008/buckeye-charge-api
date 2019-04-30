@@ -24,8 +24,7 @@ console.log('hmmm?');
 app.use(morgan('combined'));
 app.use(cors());
 
-app.get('/', (req, res) => {res.send('it is working!')})
-// allTeams.getAllTeams(teamData))
+app.get('/', allTeams.getAllTeams(teamData))
 
 app.get('/Team/:name', teamInfo.getTeamInfo(teamData))
 
