@@ -1,8 +1,13 @@
-const getTournaments = (req, res, teamData)=> {
+const getTournaments = (teamData)=> (req, res) => {
   teamData.select('id', 'weekend', 'teamId', 'tourname').from('tournaments')
     .then(tournaments => {
-      res.json(tournaments)
+      if (tournaments.length) {
+        res.json(tournaments)
+      } else {
+        res.status(400).json('tournaments not fournd')
+      }
     })
+    .catch(err => res.status(400).json('error getting tournaments'))
 }
 
 module.exports = {

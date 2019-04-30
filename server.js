@@ -24,14 +24,15 @@ console.log('hmmm?');
 app.use(morgan('combined'));
 app.use(cors());
 
-app.get('/', (req, res) => {allTeams.getAllTeams(req, res, teamData) })
+app.get('/', (req, res) => {res.send('it is working!')})
+// allTeams.getAllTeams(teamData))
 
-app.get('/Team/:name', (req, res) => {teamInfo.getTeamInfo(req, res, teamData) })
+app.get('/Team/:name', teamInfo.getTeamInfo(teamData))
 
-app.get('/Team/:name/roster', (req, res) => {roster.getRoster(req, res, teamData) })
+app.get('/Team/:name/roster', roster.getRoster(teamData))
 
-app.get('/tournaments', (req, res) => {tournaments.getTournaments(req, res, teamData) })
+app.get('/tournaments', tournaments.getTournaments(teamData))
 
-app.listen(3000, ()=> {
-  console.log('app is running on port 3000')
+app.listen(process.env.PORT || 3000, ()=> {
+  console.log(`app is running on port ${process.env.PORT}`)
 })

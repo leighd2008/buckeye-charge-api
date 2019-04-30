@@ -1,4 +1,4 @@
-const getRoster = (req, res, teamData)=> {
+const getRoster = (teamData)=> (req, res) => {
   const { name } = req.params;
   teamData.select('*').from('rosters').where({
     name: name
