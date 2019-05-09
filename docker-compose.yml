@@ -4,13 +4,11 @@ services:
 
   # Backend API
   buckeye-charge-api:
-    #container_name: backend
-    #image: node:alpine
     build: ./
     command: npm start
     working_dir: /usr/src/buckeye-charge-api
     environment:
-      POSTGRES_URI: postgres://buckeyecharge:BCharge@postgres:5432/buckeye-charge-docker
+      POSTGRES_URI: postgres://postgres:postgres@postgres:5432/buckeye-charge-docker
       #POSTGRES_USER: buckeyecharge
       #POSTGRES_PASSWORD: BCharge
       #POSTGRES_DB: buckeye-charge-docker
@@ -25,11 +23,13 @@ services:
   # Postgres
   postgres:
     environment:
-      POSTGRES_USER: buckeyecharge
-      POSTGRES_PASSWORD: BCharge
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
       POSTGRES_DB: buckeye-charge-docker
       POSTGRES_HOST: postgres
     image: postgres
     ports:
       - "5432:5432"
+    volumes:
+    - ./buckeye-charge.sql:/docker-entrypoint-initdb.d/buckeye-charge.sql
     
