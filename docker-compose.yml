@@ -13,8 +13,8 @@ services:
       #POSTGRES_PASSWORD: BCharge
       #POSTGRES_DB: buckeye-charge-docker
       #POSTGRES_HOST: postgres
-    links:
-      - postgres
+    # links:
+    #   - postgres
     ports:
       - "3000:3000"
     volumes:
